@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLeaf  | Premium Cannabis Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4CAF50;
+            --secondary: #8BC34A;
+            --dark: #2E7D32;
+            --light: #C8E6C9;
+            --accent: #FF9800;
+            --text: #333;
+            --background: #f9f9f9;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://media.istockphoto.com/id/467667616/photo/kenya-flag-on-cannabis-background-drug-policy-legalization-of-marijuana.jpg?s=612x612&w=0&k=20&c=Ta4B6Ykp5XDobo2mrt4bc3XP7AecyPwp9Mz_CFkPpxo=');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 10px 0;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .order-section {
+            background-color: var(--light);
+        }
+        
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .order-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .product-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .order-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .order-summary h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .mpesa-section {
+            background-color: #f1f9f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .mpesa-logo {
+            font-size: 2rem;
+            color: #00B300;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .whatsapp-notification {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(150%);
+            transition: transform 0.5s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        
+        .notification-content h4 {
+            margin-bottom: 5px;
+        }
+        
+        .notification-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .close-notification {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 992px) {
+            .order-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-cannabis fa-2x" style="color: #4CAF50;"></i>
+                <h1>KaruGreenLeaf</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#order">Order</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Premium Cannabis Delivery</h2>
+            <p>Discover our carefully curated selection of high-quality cannabis products</p>
+            <p> Delivered discreetly!!</p>
+            <a href="#products" class="btn">Shop Now</a>
+            <a href="#order" class="btn btn-outline">Order Online</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2cK3_nqd50A-YLyoXoHWe6NnMtTbuJYpwA&s" alt="Joint">
+                    </div>
+                    <div class="product-info">
+                        <h3>Joint</h3>
+                        <div class="product-price">Ksh50/g</div>
+                        <p class="product-description">A legendary Shash strain with relaxing effects and a sweet, spicy aroma. Perfect for evening use.</p>
+                        <button class="btn" onclick="addToCart('Joint', 50)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcEgbu3RchV7BYrsMrjg8U3FeZrLSXQmFz1A&s" alt="Weed Cookies">
+                    </div>
+                    <div class="product-info">
+                        <h3>Weed Cookies</h3>
+                        <div class="product-price">Ksh100/g</div>
+                        <p class="product-description">An energizing sativa with a pungent diesel-like aroma. Great for daytime creativity and focus.</p>
+                        <button class="btn" onclick="addToCart('Weed Cookies', 100)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="data:image/jpeg;base64,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" alt="Chalis Bong">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bamboo Bong</h3>
+                        <div class="product-price">Ksh30</div>
+                        <p class="product-description">A balanced hybrid with sweet berry aroma. Provides full-body relaxation with cerebral stimulation.</p>
+                        <button class="btn" onclick="addToCart('Bamboo Bong', 30)">Add to Cart</button>
+                    </div>
+                </div>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="section order-section" id="order">
+        <div class="container">
+            <div class="section-title">
+                <h2>Place Your Order</h2>
+            </div>
+            <div class="order-container">
+                <div class="order-form">
+                    <h3>Order Information</h3>
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="phone">Phone Number (for M-Pesa)</label>
+                            <input type="tel" id="phone" placeholder="e.g. 254712345678" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Select Products</label>
+                            <select id="productSelect" class="product-select" onchange="updateProductDetails()">
+                                <option value="">-- Select a Product --</option>
+                                <option value="Joint">Joint - Ksh50/g</option>
+                                <option value="Weed Cookies">Weed Cookies - Ksh100/g</option>
+                                <option value="Bamboo Bong">Bamboo Bong - Ksh30/g</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Quantity (grams)</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-btn" onclick="adjustQuantity(-1)">-</button>
+                                <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button type="button" class="quantity-btn" onclick="adjustQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Special Instructions</label>
+                            <textarea id="notes" rows="3" placeholder="Any special requests?"></textarea>
+                        </div>
+                        
+                        <div class="mpesa-section">
+                            <div class="mpesa-logo">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span style="font-weight: bold; font-size: 1.2rem;">M-PESA</span>
+                            </div>
+                            <p>You will receive a payment request on your phone to complete the transaction</p>
+                        </div>
+                        
+                        <button type="button" class="btn" onclick="submitOrder()" style="width: 100%; margin-top: 20px;">
+                            Complete Order with M-Pesa
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="summaryItems">
+                        <p>No items added yet</p>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="orderTotal">$0.00</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <p>After placing your order, you'll receive a WhatsApp confirmation with delivery details</p>
+                        <a href="#" class="whatsapp-notification">
+                            <i class="fab fa-whatsapp fa-2x"></i>
+                            <span>Order notifications via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="notification-content">
+            <h4>Order Confirmed!</h4>
+            <p>We've sent your order details via WhatsApp. Payment request sent to your phone.</p>
+        </div>
+        <button class="close-notification" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>KaruGreenLeaf</h3>
+                    <p>Providing premium cannabis products with a focus on quality, safety, and customer satisfaction.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@greenleaf.com</li>
+                        <li><i class="fab fa-whatsapp"></i> +254 790 433 569</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 KaruGreenLeaf Delivery. For medical use only 😉. Must be 18+ to purchase. All products comply with local regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        
+        function addToCart(name, price) {
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartSummary();
+            showNotification("Item added to cart: " + name);
+        }
+        
+        function updateCartSummary() {
+            const summaryItems = document.getElementById('summaryItems');
+            const orderTotal = document.getElementById('orderTotal');
+            
+            if (cart.length === 0) {
+                summaryItems.innerHTML = '<p>No items added yet</p>';
+                orderTotal.textContent = '$0.00';
+                return;
+            }
+            
+            let itemsHtml = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemsHtml += `
+                    <div class="summary-item">
+                        <span>${item.name} (${item.quantity}g)</span>
+                        <span>$${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            summaryItems.innerHTML = itemsHtml;
+            orderTotal.textContent = '$' + total.toFixed(2);
+        }
+        
+        function adjustQuantity(change) {
+            const quantityInput = document.getElementById('quantity');
+            let quantity = parseInt(quantityInput.value) || 1;
+            
+            quantity += change;
+            
+            if (quantity < 1) quantity = 1;
+            if (quantity > 10) quantity = 10;
+            
+            quantityInput.value = quantity;
+        }
+        
+        function updateProductDetails() {
+            const productSelect = document.getElementById('productSelect');
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+            
+            if (selectedOption.value) {
+                const productName = selectedOption.text.split(' - ')[0];
+                const productPrice = parseFloat(selectedOption.text.match(/\$(\d+)/)[1]);
+                
+                // Add to cart
+                addToCart(productName, productPrice);
+            }
+        }
+        
+        function submitOrder() {
+            const phone = document.getElementById('phone').value;
+            
+            if (!phone) {
+                alert('Please enter your phone number for M-Pesa payment');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert('Please add at least one product to your order');
+                return;
+            }
+            
+            // Simulate M-Pesa payment process
+            showNotification("Processing M-Pesa payment...");
+            
+            setTimeout(() => {
+                showNotification("Payment successful! Order confirmed.");
+                
+                // Reset form
+                document.getElementById('orderForm').reset();
+                cart = [];
+                updateCartSummary();
+                
+                // Show WhatsApp notification
+                document.getElementById('notification').classList.add('show');
+            }, 2000);
+        }
+        
+        function showNotification(message) {
+            // In a real implementation, this would connect to backend
+            console.log("Notification:", message);
+        }
+        
+        function closeNotification() {
+            document.getElementById('notification').classList.remove('show');
+        }
+        
+        // Initialize cart
+        updateCartSummary();
+    </script>
+</body>
+</html>
