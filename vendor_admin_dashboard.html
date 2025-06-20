@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaruGreenLeaf Vendor Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FFC107;
+            --dark: #1A1A2E;
+            --light: #F5F5F5;
+            --gray: #E0E0E0;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --info: #2196F3;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Login Styles */
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo p {
+            font-size: 1rem;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .login-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .login-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .login-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .role-selector {
+            display: flex;
+            margin-bottom: 25px;
+            border-radius: 50px;
+            background: #f0f2f5;
+            overflow: hidden;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .role-btn.active {
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .login-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            display: none;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            min-height: 95vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-small {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-small h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .logo-small span {
+            color: var(--primary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .user-details h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .user-details p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+            color: #555;
+        }
+
+        .logout-btn:hover {
+            background: #f8f8f8;
+            border-color: #ccc;
+        }
+
+        .dashboard-content {
+            display: flex;
+            height: calc(100vh - 90px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--dark);
+            color: white;
+            padding: 25px 0;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background: #f9fafb;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+
+        .page-title i {
+            color: var(--primary);
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group-full {
+            flex: 1;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #ddd;
+            color: #555;
+        }
+
+        .btn-outline:hover {
+            background: #f8f8f8;
+            border-color: #ccc;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8f8f8;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .product-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .product-info h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .price-input, .stock-input {
+            width: 100px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .price-input:focus, .stock-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .stock-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stock-in {
+            background: rgba(76, 175, 80, 0.15);
+            color: var(--success);
+        }
+
+        .stock-low {
+            background: rgba(255, 152, 0, 0.15);
+            color: var(--warning);
+        }
+
+        .stock-out {
+            background: rgba(244, 67, 54, 0.15);
+            color: var(--danger);
+        }
+
+        .action-cell {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-icon.save {
+            background: rgba(76, 175, 80, 0.15);
+            color: var(--success);
+        }
+
+        .btn-icon.save:hover {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-icon.edit {
+            background: rgba(33, 150, 243, 0.15);
+            color: var(--info);
+        }
+
+        .btn-icon.edit:hover {
+            background: var(--info);
+            color: white;
+        }
+
+        .btn-icon.delete {
+            background: rgba(244, 67, 54, 0.15);
+            color: var(--danger);
+        }
+
+        .btn-icon.delete:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--dark);
+        }
+
+        .modal-content h3 {
+            margin-bottom: 25px;
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .dashboard-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0;
+            }
+            
+            .nav-item {
+                flex: 1 0 33%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-item {
+                flex: 1 0 50%;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .table-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .user-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-item {
+                flex: 1 0 100%;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="container" id="login-container">
+        <div class="login-container">
+            <div class="logo">
+                <h1>Karu<span>GreenLeaf</span></h1>
+                <p>Multi-Vendor Management System</p>
+            </div>
+            
+            <div class="login-icon">
+                <i class="fas fa-cannabis fa-2x" style="color: #4CAF50;"></i>
+            </div>
+            <h2>Vendor Portal</h2>
+            
+            <div class="role-selector">
+                <div class="role-btn active" id="vendor-login-btn">
+                    Vendor Login
+                </div>
+                <div class="role-btn" id="admin-login-btn">
+                    Admin Login
+                </div>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn" id="login-submit">Sign In</button>
+            </form>
+            <div class="login-footer">
+                <p>Need help? <a href="#">Contact system administrator</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Dashboard -->
+    <div class="container dashboard-container" id="vendor-dashboard">
+        <!-- Vendor dashboard content would go here -->
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="container dashboard-container" id="admin-dashboard">
+        <div class="header">
+            <div class="logo-small">
+                <i class="fas fa-cannabis fa-2x" style="color: #4CAF50;"></i>
+                <h1>Karu<span>Green</span></h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="admin-avatar">SA</div>
+                <div class="user-details">
+                    <h3 id="admin-name">System Admin</h3>
+                    <p id="admin-account-type">Administrator Account</p>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="sidebar">
+                <div class="nav-links">
+                    <div class="nav-item active" data-page="vendors">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Manage Vendors</span>
+                    </div>
+                    <div class="nav-item" data-page="products-admin">
+                        <i class="fas fa-cannabis"></i>
+                        <span>Product Catalog</span>
+                    </div>
+                    <div class="nav-item" data-page="analytics-admin">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>System Analytics</span>
+                    </div>
+                    <div class="nav-item" data-page="orders-admin">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>All Orders</span>
+                    </div>
+                    <div class="nav-item" data-page="settings-admin">
+                        <i class="fas fa-cog"></i>
+                        <span>System Settings</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <!-- Vendors Page -->
+                <div class="page-content" id="vendors-page">
+                    <h2 class="page-title">
+                        <i class="fas fa-user-plus"></i>
+                        Vendor Management
+                    </h2>
+                    
+                    <div class="form-section">
+                        <h3 style="margin-bottom: 20px; color: var(--dark);">Add New Vendor</h3>
+                        <div class="form-row">
+                            <div class="form-group-full">
+                                <label for="vendor-username">Username</label>
+                                <input type="text" id="vendor-username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group-full">
+                                <label for="vendor-password">Password</label>
+                                <input type="password" id="vendor-password" placeholder="Set vendor password">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group-full">
+                                <label for="vendor-phone">Phone Number</label>
+                                <input type="text" id="vendor-phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group-full">
+                                <label for="vendor-whatsapp">WhatsApp Number</label>
+                                <input type="text" id="vendor-whatsapp" placeholder="Enter WhatsApp number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group-full">
+                                <label for="vendor-company">Company/Brand</label>
+                                <input type="text" id="vendor-company" placeholder="Enter company name">
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button class="btn btn-outline" onclick="resetVendorForm()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button class="btn btn-primary" onclick="addVendor()">
+                                <i class="fas fa-plus"></i> Add Vendor
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Vendor List</h3>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="exportVendors()">
+                                    <i class="fas fa-file-export"></i> Export
+                                </button>
+                                <button class="btn btn-outline" onclick="loadAdminVendors()">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <th>Contact</th>
+                                    <th>Products</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-vendors">
+                                <!-- Vendor list will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Product Catalog Page -->
+                <div class="page-content" id="products-admin-page" style="display: none;">
+                    <h2 class="page-title">
+                        <i class="fas fa-cannabis"></i>
+                        Product Catalog
+                    </h2>
+                    
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>All Products</h3>
+                            <div class="table-actions">
+                                <button class="btn btn-outline" onclick="loadAllProducts()">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Base Price (Ksh)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products">
+                                <!-- Products will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p>© 2025 KaruGreenLeaf Admin Dashboard. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:5000';
+        
+        // State Management
+        let currentUser = null;
+        let currentRole = 'vendor';
+        
+        // DOM Elements
+        const loginContainer = document.getElementById('login-container');
+        const vendorDashboard = document.getElementById('vendor-dashboard');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const loginForm = document.getElementById('login-form');
+        const vendorLoginBtn = document.getElementById('vendor-login-btn');
+        const adminLoginBtn = document.getElementById('admin-login-btn');
+        const adminVendorsTable = document.getElementById('admin-vendors');
+        const adminProductsTable = document.getElementById('admin-products');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupNavigation();
+            setupEventListeners();
+            checkSession();
+        });
+        
+        function setupEventListeners() {
+            vendorLoginBtn.addEventListener('click', () => {
+                vendorLoginBtn.classList.add('active');
+                adminLoginBtn.classList.remove('active');
+                currentRole = 'vendor';
+            });
+            
+            adminLoginBtn.addEventListener('click', () => {
+                adminLoginBtn.classList.add('active');
+                vendorLoginBtn.classList.remove('active');
+                currentRole = 'admin';
+            });
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                login();
+            });
+        }
+        
+        function setupNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const page = this.getAttribute('data-page');
+                    showPage(page);
+                    
+                    if (page === 'vendors') loadAdminVendors();
+                    if (page === 'products-admin') loadAllProducts();
+                });
+            });
+        }
+        
+        function showPage(page) {
+            document.querySelectorAll('.page-content').forEach(p => {
+                p.style.display = 'none';
+            });
+            const pageElement = document.getElementById(`${page}-page`);
+            if (pageElement) pageElement.style.display = 'block';
+        }
+        
+        async function checkSession() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    handleSuccessfulLogin(user);
+                }
+            } catch (error) {
+                console.error('Session check failed:', error);
+            }
+        }
+        
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                alert('Please enter both username and password');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    handleSuccessfulLogin(user);
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed. Please try again.');
+            }
+        }
+        
+        function handleSuccessfulLogin(user) {
+            currentUser = user;
+            
+            if (user.role === 'admin') {
+                loginContainer.style.display = 'none';
+                vendorDashboard.style.display = 'none';
+                adminDashboard.style.display = 'block';
+                document.getElementById('admin-name').textContent = user.username;
+                document.getElementById('admin-avatar').textContent = 
+                    user.username.substring(0, 2).toUpperCase();
+                document.getElementById('admin-account-type').textContent = 
+                    `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} Account`;
+                
+                // Load initial data
+                loadAdminVendors();
+            } else {
+                // Vendor dashboard implementation would go here
+                alert('Vendor dashboard not implemented in this example');
+            }
+        }
+        
+        async function logout() {
+            try {
+                await fetch(`${API_BASE_URL}/api/logout`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                
+                currentUser = null;
+                vendorDashboard.style.display = 'none';
+                adminDashboard.style.display = 'none';
+                loginContainer.style.display = 'block';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            } catch (error) {
+                console.error('Logout error:', error);
+                alert('Logout failed. Please try again.');
+            }
+        }
+        
+        async function loadAdminVendors() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/vendors`, {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch vendors');
+                }
+                
+                const vendors = await response.json();
+                renderVendors(vendors);
+            } catch (error) {
+                console.error('Error loading vendors:', error);
+                adminVendorsTable.innerHTML = `<tr><td colspan="5">Error loading vendors: ${error.message}</td></tr>`;
+            }
+        }
+        
+        function renderVendors(vendors) {
+            if (!vendors.length) {
+                adminVendorsTable.innerHTML = `<tr><td colspan="5">No vendors found</td></tr>`;
+                return;
+            }
+            
+            adminVendorsTable.innerHTML = vendors.map(vendor => `
+                <tr>
+                    <td>
+                        <div class="product-cell">
+                            <div class="product-img">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>${vendor.company || 'No Company'}</h4>
+                                <p>${vendor.username}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>${vendor.phone || 'N/A'}</div>
+                        <small>${vendor.whatsapp || 'N/A'}</small>
+                    </td>
+                    <td>${vendor.products || 0}</td>
+                    <td>
+                        <span class="stock-badge stock-in">Active</span>
+                    </td>
+                    <td class="action-cell">
+                        <button class="btn-icon delete" onclick="deleteVendor(${vendor.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        async function addVendor() {
+            const username = document.getElementById('vendor-username').value;
+            const password = document.getElementById('vendor-password').value;
+            const phone = document.getElementById('vendor-phone').value;
+            const whatsapp = document.getElementById('vendor-whatsapp').value;
+            const company = document.getElementById('vendor-company').value;
+            
+            if (!username || !password || !phone || !whatsapp || !company) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/vendors`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, phone, whatsapp, company }),
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    alert('Vendor added successfully!');
+                    resetVendorForm();
+                    loadAdminVendors();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Failed to add vendor');
+                }
+            } catch (error) {
+                console.error('Add vendor error:', error);
+                alert('Failed to add vendor. Please try again.');
+            }
+        }
+        
+        async function deleteVendor(vendorId) {
+            if (!confirm('Are you sure you want to delete this vendor? All their products will be removed.')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/vendors/${vendorId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    alert('Vendor deleted successfully!');
+                    loadAdminVendors();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Failed to delete vendor');
+                }
+            } catch (error) {
+                console.error('Delete vendor error:', error);
+                alert('Failed to delete vendor. Please try again.');
+            }
+        }
+        
+        async function loadAllProducts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/products`, {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                
+                const products = await response.json();
+                renderProducts(products);
+            } catch (error) {
+                console.error('Error loading products:', error);
+                adminProductsTable.innerHTML = `<tr><td colspan="4">Error loading products: ${error.message}</td></tr>`;
+            }
+        }
+        
+        function renderProducts(products) {
+            if (!products.length) {
+                adminProductsTable.innerHTML = `<tr><td colspan="4">No products found</td></tr>`;
+                return;
+            }
+            
+            adminProductsTable.innerHTML = products.map(product => `
+                <tr>
+                    <td>
+                        <div class="product-cell">
+                            <div class="product-img">
+                                <i class="${getCategoryIcon(product.category)}"></i>
+                            </div>
+                            <div class="product-info">
+                                <h4>${product.name}</h4>
+                                <p>${product.category}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${product.category}</td>
+                    <td>${product.base_price}</td>
+                    <td class="action-cell">
+                        <button class="btn-icon edit">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete" onclick="deleteProduct(${product.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        async function deleteProduct(productId) {
+            if (!confirm('Are you sure you want to delete this product?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    alert('Product deleted successfully!');
+                    loadAllProducts();
+                } else {
+                    const error = await response.json();
+                    alert(error.error || 'Failed to delete product');
+                }
+            } catch (error) {
+                console.error('Delete product error:', error);
+                alert('Failed to delete product. Please try again.');
+            }
+        }
+        
+        function getCategoryIcon(category) {
+            const icons = {
+                'Shash': 'fas fa-cannabis',
+                'Edibles': 'fas fa-cookie',
+                'Bong': 'fas fa-bong',
+                'G-Bag': 'fas fa-shopping-bag'
+            };
+            return icons[category] || 'fas fa-cube';
+        }
+        
+        function resetVendorForm() {
+            document.getElementById('vendor-username').value = '';
+            document.getElementById('vendor-password').value = '';
+            document.getElementById('vendor-phone').value = '';
+            document.getElementById('vendor-whatsapp').value = '';
+            document.getElementById('vendor-company').value = '';
+        }
+        
+        function exportVendors() {
+            alert('Vendor export would be implemented here');
+        }
+    </script>
+</body>
+</html>

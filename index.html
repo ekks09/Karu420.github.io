@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaruGreenLeaf | Premium Cannabis Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4CAF50;
+            --secondary: #8BC34A;
+            --dark: #2E7D32;
+            --light: #C8E6C9;
+            --accent: #FF9800;
+            --text: #333;
+            --background: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+        
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .hero {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    }
+
+        .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+      }
+
+    .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+     }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .vendors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .vendor-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .vendor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .vendor-img {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vendor-img i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        .vendor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .vendor-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .vendor-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .vendor-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-img i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .vendor-login {
+            margin-left: auto;
+            font-weight: bold;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 10px 0;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .order-section {
+            background-color: var(--light);
+        }
+        
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .order-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, 
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .product-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .order-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .order-summary h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .mpesa-section {
+            background-color: #f1f9f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .mpesa-logo {
+            font-size: 2rem;
+            color: #00B300;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .whatsapp-notification {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(150%);
+            transition: transform 0.5s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            font-size: 2rem;
+            color: #25D366;
+        }
+        
+        .notification-content h4 {
+            margin-bottom: 5px;
+        }
+        
+        .notification-content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .close-notification {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .vendor-selector {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .vendor-selector select {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            font-size: 1.1rem;
+            min-width: 300px;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .vendor-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .vendor-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .vendor-avatar i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+        
+        .vendor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .vendor-info-panel h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .vendor-info-panel p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        @media (max-width: 992px) {
+            .order-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .vendor-details {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .vendor-selector select {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-cannabis"></i>
+                <h1>KaruGreenLeaf</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#vendors">Vendors</a></li>
+                    <li><a href="#order">Order</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="vendor-login"><a href="vendor_admin_dashboard.html">Vendor Login</a></li>
+                </ul>
+            </nav>
+            <div class="whatsapp-notification">
+                <i class="fab fa-whatsapp"></i>
+                <span>Order via WhatsApp</span>
+            </div>  
+        </div>
+    </header>
+
+   <!-- Hero Section -->
+<section class="hero" style="background-image: url('https://us.123rf.com/450wm/promesaartstudio/promesaartstudio1503/promesaartstudio150300354/37665345-kenya-flag-on-cannabis-background-drug-policy-legalization-of-marijuana.jpg');">
+    <div class="hero-content">
+        <h2>Premium Cannabis Marketplace</h2>
+        <p>Discover top vendors and their curated selection of high-quality cannabis products</p>
+        <p>Delivered discreetly!!</p>
+        <a href="#vendors" class="btn">Browse Vendors</a>
+        <a href="#order" class="btn btn-outline">Place Order</a>
+    </div>
+</section>
+
+
+
+    <!-- Vendors Section -->
+    <section class="section" id="vendors">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Vendors</h2>
+                <p>Select a vendor to view their products</p>
+            </div>
+            
+            <div class="vendor-selector">
+                <select id="vendorSelect" onchange="loadVendorProducts(this.value)">
+                    <option value="">-- Select a Vendor --</option>
+                    <!-- Vendors will be loaded dynamically -->
+                </select>
+            </div>
+            
+            <div id="vendorDetails" style="display: none;">
+                <div class="vendor-details">
+                    <div class="vendor-avatar">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="vendor-info-panel">
+                        <h2 id="vendorName">Vendor Name</h2>
+                        <p id="vendorDescription">Vendor description will appear here</p>
+                        <div>
+                            <i class="fas fa-phone"></i> <span id="vendorPhone">Phone</span> | 
+                            <i class="fab fa-whatsapp"></i> <span id="vendorWhatsapp">WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-title">
+                    <h2>Products</h2>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <div id="allVendors">
+                <div class="vendors-grid" id="vendorsGrid">
+                    <!-- All vendors will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="section order-section" id="order">
+        <div class="container">
+            <div class="section-title">
+                <h2>Place Your Order</h2>
+            </div>
+            <div class="order-container">
+                <div class="order-form">
+                    <h3>Order Information</h3>
+                    <form id="orderForm">
+                        <div class="form-group">
+                           <label for="phone">Your M-PESA Phone Number</label>
+                            <input type="text" id="phone" placeholder="07XXXXXXXX" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Select Products</label>
+                            <select id="productSelect" class="product-select" onchange="updateProductDetails()">
+                                <option value="">-- Select a Product --</option>
+                                <!-- Products will be loaded dynamically -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Quantity (grams)</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-btn" onclick="adjustQuantity(-1)">-</button>
+                                <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button type="button" class="quantity-btn" onclick="adjustQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Special Instructions</label>
+                            <textarea id="notes" rows="3" placeholder="Any special requests?"></textarea>
+                        </div>
+                        
+                        <div class="mpesa-section">
+                            <div class="mpesa-logo">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span style="font-weight: bold; font-size: 1.2rem;">M-PESA</span>
+                            </div>
+                            <p>You will receive a payment request on your phone to complete the transaction</p>
+                        </div>
+                        
+                        <button type="button" class="btn" id="orderBtn" onclick="submitOrder()" style="width: 100%; margin-top: 20px;">
+                             Complete Order with M-Pesa
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="summaryItems">
+                        <p>No items added yet</p>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="orderTotal">Ksh0.00</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center;">
+                        <p>After placing your order, you'll receive a WhatsApp confirmation with delivery details</p>
+                        <a href="https://wa.me/254790433569?text=I%20have%20placed%20an%20order%20on%20KaruGreenLeaf" class="whatsapp-notification" target="_blank">
+                            <i class="fab fa-whatsapp fa-2x"></i>
+                            <span>Order notifications via WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="notification-content">
+            <h4>Order Confirmed!</h4>
+            <p>We've sent your order details via WhatsApp. Payment request sent to your phone.</p>
+        </div>
+        <button class="close-notification" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>KaruGreenLeaf</h3>
+                    <p>Providing premium cannabis products with a focus on quality, safety, and customer satisfaction.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@karugreenleaf.com</li>
+                        <li><i class="fab fa-whatsapp"></i> +254 790 433 569</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 KaruGreenLeaf Delivery. For medical use only 😉. Must be 18+ to purchase. All products comply with local regulations.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000';
+        let vendors = [];
+        let products = [];
+        let cart = [];
+        let currentVendorId = null;
+        let currentVendor = null;
+
+        // DOM Elements
+        const vendorsGrid = document.getElementById('vendorsGrid');
+        const vendorSelect = document.getElementById('vendorSelect');
+        const vendorDetails = document.getElementById('vendorDetails');
+        const allVendors = document.getElementById('allVendors');
+        const productsGrid = document.getElementById('productsGrid');
+        const productSelect = document.getElementById('productSelect');
+        const vendorName = document.getElementById('vendorName');
+        const vendorDescription = document.getElementById('vendorDescription');
+        const vendorPhone = document.getElementById('vendorPhone');
+        const vendorWhatsapp = document.getElementById('vendorWhatsapp');
+        const vendorAvatar = document.querySelector('.vendor-avatar');
+        
+        // Initialize the marketplace
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVendors();
+        });
+        
+        // Load vendors from API
+        async function loadVendors() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/vendors`);
+                vendors = await response.json();
+                renderVendors();
+                populateVendorDropdown();
+            } catch (error) {
+                console.error('Error loading vendors:', error);
+            }
+        }
+        
+        // Render all vendors
+        function renderVendors() {
+            vendorsGrid.innerHTML = '';
+            
+            vendors.forEach(vendor => {
+                const vendorCard = document.createElement('div');
+                vendorCard.className = 'vendor-card';
+                vendorCard.innerHTML = `
+                    <div class="vendor-img">
+                        ${vendor.image_url ? 
+                            `<img src="${vendor.image_url}" alt="${vendor.company}">` : 
+                            `<i class="fas fa-store"></i>`}
+                    </div>
+                    <div class="vendor-info">
+                        <h3>${vendor.company}</h3>
+                        <p class="vendor-description">${vendor.description || 'Premium cannabis products'}</p>
+                        <button class="btn" onclick="loadVendorProducts(${vendor.id})">View Products</button>
+                    </div>
+                `;
+                vendorsGrid.appendChild(vendorCard);
+            });
+        }
+        
+        // Populate vendor dropdown
+        function populateVendorDropdown() {
+            vendorSelect.innerHTML = '<option value="">-- Select a Vendor --</option>';
+            
+            vendors.forEach(vendor => {
+                const option = document.createElement('option');
+                option.value = vendor.id;
+                option.textContent = vendor.company;
+                vendorSelect.appendChild(option);
+            });
+        }
+        
+        // Load products for a specific vendor
+        async function loadVendorProducts(vendorId) {
+            try {
+                // Show vendor details
+                vendorDetails.style.display = 'block';
+                allVendors.style.display = 'none';
+                
+                // Scroll to vendor details
+                document.getElementById('vendors').scrollIntoView({ behavior: 'smooth' });
+                
+                // Find the selected vendor
+                currentVendor = vendors.find(v => v.id == vendorId);
+                if (!currentVendor) return;
+                
+                // Update vendor details
+                vendorName.textContent = currentVendor.company;
+                vendorDescription.textContent = currentVendor.description || 'Premium cannabis products';
+                vendorPhone.textContent = currentVendor.phone || 'N/A';
+                vendorWhatsapp.textContent = currentVendor.whatsapp || 'N/A';
+                
+                // Update vendor avatar
+                if (currentVendor.image_url) {
+                    vendorAvatar.innerHTML = `<img src="${currentVendor.image_url}" alt="${currentVendor.company}">`;
+                } else {
+                    vendorAvatar.innerHTML = '<i class="fas fa-store"></i>';
+                }
+                
+                // Load products
+                const response = await fetch(`${API_BASE_URL}/api/products?vendor_id=${vendorId}`);
+                products = await response.json();
+                renderProducts();
+                populateProductDropdown();
+                
+                // Set current vendor ID
+                currentVendorId = vendorId;
+                
+                // Reset cart
+                cart = [];
+                updateCartSummary();
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+        
+        // Render products
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            
+            if (products.length === 0) {
+                productsGrid.innerHTML = '<p>No products available for this vendor.</p>';
+                return;
+            }
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        ${product.image_url ? 
+                            `<img src="${product.image_url}" alt="${product.name}">` : 
+                            `<i class="fas fa-cannabis"></i>`}
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="product-price">Ksh${product.base_price}</div>
+                        <p class="product-description">${product.description || ''}</p>
+                        <button class="btn" onclick="addToCart(${product.id}, '${product.name}', ${product.base_price})">Add to Cart</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+        
+        // Populate product dropdown
+        function populateProductDropdown() {
+            productSelect.innerHTML = '<option value="">-- Select a Product --</option>';
+            
+            products.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = `${product.name} - Ksh${product.base_price}`;
+                productSelect.appendChild(option);
+            });
+        }
+        
+        // Update product details when selected from dropdown
+        function updateProductDetails() {
+            const productId = productSelect.value;
+            if (!productId) return;
+            
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                addToCart(product.id, product.name, product.base_price);
+            }
+        }
+        
+        // Add to cart
+        function addToCart(productId, name, price, quantity = 1) {
+            // If we have a currentVendorId, then we can add
+            if (!currentVendorId) {
+                alert('Please select a vendor first');
+                return;
+            }
+            
+            // Check if the product is already in the cart
+            const existingItem = cart.find(item => item.productId === productId);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    productId: productId,
+                    name: name,
+                    price: price,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartSummary();
+            showNotification(`Added to cart: ${name} (${quantity}g)`);
+        }
+        
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartSummary();
+            showNotification("Item removed from cart");
+        }
+        
+        // Update cart summary
+        function updateCartSummary() {
+            const summaryItems = document.getElementById('summaryItems');
+            const orderTotal = document.getElementById('orderTotal');
+            
+            if (cart.length === 0) {
+                summaryItems.innerHTML = '<p>No items added yet</p>';
+                orderTotal.textContent = 'Ksh0.00';
+                return;
+            }
+            
+            let itemsHtml = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                itemsHtml += `
+                    <div class="summary-item">
+                        <span>${item.name} (${item.quantity}g)</span>
+                        <span>
+                            Ksh${itemTotal.toFixed(2)}
+                            <button onclick="removeFromCart(${index})" style="margin-left:10px;color:red;cursor:pointer;">Remove</button>
+                        </span>
+                    </div>
+                `;
+            });
+            
+            summaryItems.innerHTML = itemsHtml;
+            orderTotal.textContent = 'Ksh' + total.toFixed(2);
+        }
+        
+        // Adjust quantity
+        function adjustQuantity(change) {
+            const quantityInput = document.getElementById('quantity');
+            let quantity = parseInt(quantityInput.value) || 1;
+            
+            quantity += change;
+            
+            if (quantity < 1) quantity = 1;
+            if (quantity > 10) quantity = 10;
+            
+            quantityInput.value = quantity;
+        }
+        
+        // Submit order
+        async function submitOrder() {
+            const phone = document.getElementById('phone').value;
+            const notes = document.getElementById('notes').value;
+            
+            if (!phone.match(/^07[0-9]{8}$/)) {
+                alert("Please enter a valid Kenyan phone number (07XXXXXXXX)");
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert("Please add products to your cart");
+                return;
+            }
+            
+            if (!currentVendorId) {
+                alert("Please select a vendor first");
+                return;
+            }
+            
+            // Format products for API
+            const productsData = {};
+            cart.forEach(item => {
+                productsData[item.productId] = item.quantity;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            const orderBtn = document.getElementById('orderBtn');
+            orderBtn.disabled = true;
+            orderBtn.textContent = "Processing...";
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/orders`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        phone: phone,
+                        vendor_id: currentVendorId,
+                        products: productsData,
+                        total: total,
+                        notes: notes
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Save order_id if returned by backend
+                    if (data.order_id) {
+                        sessionStorage.setItem('order_id', data.order_id);
+                    }
+                    
+                    // Redirect to WhatsApp with order details
+                    const orderId = data.order_id || sessionStorage.getItem('order_id') || 'N/A';
+                    const whatsappUrl = `https://wa.me/254790433569?text=Order%20ID:%20${orderId}%0APhone:%20${phone}%0AItems:%20${encodeURIComponent(JSON.stringify(cart))}%0ATotal:%20Ksh${total.toFixed(2)}`;
+                    window.location.href = whatsappUrl;
+                } else {
+                    alert("Order failed: " + (data.error || "Please try again"));
+                }
+            } catch (error) {
+                console.error("Order error:", error);
+                alert("Order failed. Please try again.");
+            } finally {
+                orderBtn.disabled = false;
+                orderBtn.textContent = "Complete Order with M-Pesa";
+            }
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            if (notification) {
+                notification.querySelector('.notification-content p').textContent = message;
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 3000);
+            }
+        }
+        
+        // Close notification
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            if (notification) {
+                notification.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
